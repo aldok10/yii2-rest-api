@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cd "$(dirname "$0")"
+
+./api composer install
+./api php yii migrate --interactive=0

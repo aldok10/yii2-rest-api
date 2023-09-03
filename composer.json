@@ -1,0 +1,92 @@
+{
+    "name": "forecho/yii2-rest-api",
+    "description": "Yii 2 REST API Project Template",
+    "keywords": [
+        "yii2",
+        "framework",
+        "rest",
+        "basic",
+        "project template"
+    ],
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/forecho/yii2-rest-api/issues?state=open",
+        "source": "https://github.com/forecho/yii2-rest-api"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.4",
+        "yiisoft/yii2": "~2.0.49",
+        "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
+        "yiithings/yii2-dotenv": "dev-master",
+        "sizeg/yii2-jwt": "~4.0",
+        "yiier/yii2-helpers": "^2.1",
+        "yiisoft/yii2-redis": "^2.0@dev"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "~2.1.0",
+        "yiisoft/yii2-gii": "~2.1.0",
+        "yiisoft/yii2-faker": "~2.0.0",
+        "codeception/codeception": "^5.0",
+        "codeception/verify": "~2.3 || ~3.0",
+        "codeception/specify": "~2.0",
+        "symfony/browser-kit": ">=4.2 <=6.4",
+        "codeception/module-filesystem": "^2.0 || ^3.0",
+        "codeception/module-yii2": "^1.1.9",
+        "codeception/module-asserts": "^3.0.0",
+        "codeception/module-rest": "^3.0.0",
+        "codeception/module-phpbrowser": "^3.0.0",
+        "squizlabs/php_codesniffer": "^3.7.2",
+        "phpro/grumphp": "^2.0.0",
+        "mis/yii2-ide-helper": "^1.0"
+    },
+    "config": {
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "enabled": false
+        },
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "phpro/grumphp": true
+        }
+    },
+    "autoload": {
+        "files": [
+            "vendor/yiier/yii2-helpers/src/GlobalFunctions.php",
+            "vendor/yiier/yii2-helpers/src/SupportFunctions.php"
+        ]
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "yii\\composer\\Installer::postInstall"
+        ],
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject",
+            "yii\\composer\\Installer::postInstall"
+        ],
+        "test" : "./vendor/bin/codecept run --"
+    },
+    "extra": {
+        "yii\\composer\\Installer::postCreateProject": {
+            "setPermission": [
+                {
+                    "runtime": "0777",
+                    "web/assets": "0777",
+                    "yii": "0755"
+                }
+            ]
+        },
+        "yii\\composer\\Installer::postInstall": {
+            "generateCookieValidationKey": [
+                "config/web.php"
+            ]
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+}
